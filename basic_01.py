@@ -62,4 +62,36 @@ images, labels = data_iter.next()
 for images, labels in train_loader:
     pass
 
+class CustomDataset(torch.utils.data.Dataset):
+    def __init__(self):
+        # initialise file paths or a list of file names
+        pass
+    def __getitem__(self,index):
+        # read one data from file(using numpy.fromfile, PIL.Image.open)
+        # preprocess the data(torchvision.Transform)
+        # return a datapair
+        pass
+    def __len__(self):
+        return 0 # change 0 to total size of my dataset
 
+custiom_dataset = CustomDataset()
+train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,batch_size=64,shuffle=True)
+
+resnet = torchvison.models.resnet18(pretrained=True)
+
+for param in resnet.parameters():
+    param.requires_grad = False
+
+resnet.fc = nn.linear(resnet.fc.in_features, 100)
+
+images = torch.randn(64, 3, 224, 224)
+outputs = resnet(images)
+print(outputs.size())
+
+#save and load the entire model
+torch.save(resnet, 'model.ckpt')
+model = torch.load('model.ckpt')
+
+#save and load only the model parameters
+torch.save(resnet.state_dict(), 'params.ckpt')
+resnet.load_state_dict(torch.load('params.ckpt'))
