@@ -44,3 +44,22 @@ optimizer.step()
 pred = linear(x)
 loss = criterion(pred, y)
 print('loss after 1 step optimisation: ', loss.item())
+
+x = np.array([[1,2], [3,4]])
+y = torch.from_numpy(x)
+z = y.numpy
+
+train_dataset = torchvision.dataset.CIFAR10(root='../../data/', train=True, transform=transforms.ToTensor(), download=True)
+
+image, label = train_dataset[0]
+
+train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size = 64, shuffle = True)
+
+data_iter = iter(train_dataset)
+
+images, labels = data_iter.next()
+
+for images, labels in train_loader:
+    pass
+
+
