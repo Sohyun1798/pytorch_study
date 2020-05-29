@@ -43,4 +43,4 @@ with torch.no_grad():
 
     print('Accuracy of the model on the 10000 test images: {} %'.format(100*correct/total))
 
-torch.save(model.state_dict(),model)
+torch.save(model.state_dict(), 'model.ckpt')
