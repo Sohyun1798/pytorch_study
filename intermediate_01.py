@@ -27,12 +27,12 @@ class ConvNet(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
         self.layer2 = nn.Sequential(
-            nn.Conv2d(16, 32, kernel_size=5, stride=1, padding=2)
+            nn.Conv2d(16, 32, kernel_size=5, stride=1, padding=2),
             nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
-        self.fc = nn.Linear(7*7*32, num_classes)
+        self.fc = nn.Linear(7*7*32, num_classes) # what results 7? 
 
     def forward(self, x):
         out = self.layer1(x)
@@ -74,6 +74,7 @@ with torch.no_grad():
         labels = labels.to(device)
         outputs = model(images)
         _, predicted = torch.max(outputs.data, 1)
+        print('max point is '+torch.max(outputs.data, 1))
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
