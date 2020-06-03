@@ -10,7 +10,7 @@ num_classes = 10
 batch_size = 100
 learning_rate = 0.001
 
-train_dataset = torchvision.dataset.MNIST(root='./', train = True, transform = transforms.ToTensor())
+train_dataset = torchvision.datasets.MNIST(root='./', train = True, transform = transforms.ToTensor())
 test_dataset = torchvision.datasets.MNIST(root='./', train = False, transform = transforms.ToTensor())
 
 train_loader = torch.utils.data.DataLoader(dataset = train_dataset, batch_size = batch_size, shuffle = True)
@@ -28,7 +28,7 @@ class ConvNet(nn.Module):
         )
         self.layer2 = nn.Sequential(
             nn.Conv2d(16, 32, kernel_size=5, stride=1, padding=2),
-            nn.BatchNorm2d(16),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2)
         )
@@ -74,7 +74,7 @@ with torch.no_grad():
         labels = labels.to(device)
         outputs = model(images)
         _, predicted = torch.max(outputs.data, 1)
-        print('max point is '+torch.max(outputs.data, 1))
+        print('max point is {} '.format(torch.max(outputs.data, 1)))
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
