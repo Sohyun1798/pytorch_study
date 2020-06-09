@@ -3,6 +3,8 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
+# 이게 어째서 resnet 이지,,,? identity 설정이 없는데
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 num_epochs = 80
