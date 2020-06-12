@@ -13,3 +13,5 @@ num_classes = 10
 batch_size = 100
 num_epochs = 2
 learning_rate = 0.01
+
+train_dataset = torchvision.datasets
