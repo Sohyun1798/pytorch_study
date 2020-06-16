@@ -50,7 +50,7 @@ total_step = len(train_loader)
 for epoch in range(num_epochs):
     for i, (images, labels) in enumerate(train_loader):
 
-        images = images.reshape(-1, sequence_length, inpput_size).to(device)
+        images = images.reshape(-1, sequence_length, input_size).to(device)
         labels = labels.to(device)
 
         outputs = model(images)
@@ -81,6 +81,3 @@ with torch.no_grad():
 print('Test Accuracy of the model on the 10000 test images: {}%'.format(100 * correct / total))
 
 torch.save(model.state_dict(), 'model5.ckpt')
-
-
-
