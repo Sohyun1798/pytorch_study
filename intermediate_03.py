@@ -61,7 +61,7 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         if (i+1) % 100 == 0:
-            print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format())
+            print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, i+1, total_step, loss.item()))
 
 model.eval()
 
